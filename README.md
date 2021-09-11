@@ -1,5 +1,5 @@
 # Music bot discord.py, made with lavalink
-# Getting start
+# Getting started
 ## Requirements
 First you need to run a command to install discord.py,
 ```shell
