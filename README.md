@@ -1,4 +1,14 @@
 # Music bot baed on discord.py and lavalink
-[![Python](https://img.shields.io/badge/Python-3.5%20%7C%203.6%20%7C%203.7%20%7C%203.8-blue.svg)](https://www.python.org)
-[![Discord,py])](https://github.com/Devoxin/Lavalink.py)
-[![LavaLink]](https://github.com/Rapptz/discord.py)
+
+# Requirements
+First you need to run a command to install discord.py,
+```shell
+pip install -U git+https://github.com/Devoxin/Lavalink.py@dev
+```
+Then you need to run a command to install lavalink,
+```shell
+python3.8 -m pip install -U git+https://github.com/Rapptz/discord.py
+```
+## Getting start
+`1.` Add all of the files to your cogs folder
+`2.` Enable debug event by adding `enable_debug_events = True` to your client settings
