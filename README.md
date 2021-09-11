@@ -33,7 +33,7 @@ pip install -U git+https://github.com/Devoxin/Lavalink.py@dev
 - move <position> <track> (Moves the specified song to the specified position)
 
 # Features
-- Support playlists
+- Playlists support
 - Only the DJ or someone that have (`manage_messages`) permission can control the player
 - Buttons / Dropdowns
   
