@@ -12,7 +12,8 @@ pip install -U git+https://github.com/Devoxin/Lavalink.py@dev
 ```
 ## Installation
 `1` Add all of the files to your cogs folder <br>
-`2` Enable debug event by adding `enable_debug_events = True` to your client settings
+`2` Enable debug event by adding `enable_debug_events = True` to your client settings <br>
+`3` Add `user_id` parameter to your bot in your main file
 
 ## Commands
 - play <query> (Loads your input and adds it to the queue; If there is no playing track, then it will start playing)
