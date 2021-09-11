@@ -36,5 +36,5 @@ python3.8 -m pip install -U git+https://github.com/Rapptz/discord.py
 - Only the DJ or someone that have (`manage_messages`) permission can control the player
 - Buttons / Dropdowns
   
- #Need Help?
+#Need Help?
 [Discord Server](https://discord.gg/DNKEDurMyn)
