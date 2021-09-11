@@ -10,5 +10,5 @@ Then you need to run a command to install lavalink,
 python3.8 -m pip install -U git+https://github.com/Rapptz/discord.py
 ```
 ## Getting start
-`1.` Add all of the files to your cogs folder
-`2.` Enable debug event by adding `enable_debug_events = True` to your client settings
+`1` Add all of the files to your cogs folder \n
+`2` Enable debug event by adding `enable_debug_events = True` to your client settings
