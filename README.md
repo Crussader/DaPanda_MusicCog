@@ -33,5 +33,8 @@ python3.8 -m pip install -U git+https://github.com/Rapptz/discord.py
 
 # Features
 - Support playlists
-- Only the DJ or someone that have (`manage_messages`) permissions can controll the player
+- Only the DJ or someone that have (`manage_messages`) permission can control the player
 - Buttons / Dropdowns
+  
+ #Need Help?
+[Discord Server](https://discord.gg/DNKEDurMyn)
