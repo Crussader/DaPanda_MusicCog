@@ -3,12 +3,12 @@
 ## Requirements
 First you need to run a command to install discord.py,
 ```shell
-python3.8 -m pip install -U git+https://github.com/Rapptz/discord.py
+python3.9 -m pip install -U git+https://github.com/Rapptz/discord.py
 
 ```
 Then you need to run a command to install lavalink,
 ```shell
-pip install -U git+https://github.com/Devoxin/Lavalink.py@dev
+python3.9 -m pip install -U git+https://github.com/Devoxin/Lavalink.py@dev
 ```
 ## Installation
 `1` Add all of the files to your cogs folder <br>
