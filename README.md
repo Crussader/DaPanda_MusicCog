@@ -1,2 +1,5 @@
 # Discord.py music bot baed on discord.py and lavalink
-Give credit if you are gonna use my cog &lt;3
+Getting Started
+First you need to run a command to install the library,
+
+`pip install lavalink`
