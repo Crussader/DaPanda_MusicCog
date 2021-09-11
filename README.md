@@ -1,4 +1,4 @@
-# Music bot baed on discord.py and lavalink
+# Music bot discord.py, amde with lavalink
 
 # Requirements
 First you need to run a command to install discord.py,
