@@ -31,3 +31,7 @@ python3.8 -m pip install -U git+https://github.com/Rapptz/discord.py
 - remove <start> [end] (Removes all the tracks from the specified start through the specified end (if the end is not specified it will remove only one track))
 - move <position> <track> (Moves the specified song to the specified position)
 
+# Features
+- Support playlists
+- Only the DJ or someone that have (`manage_messages`) permissions can controll the player
+- Buttons / Dropdowns
