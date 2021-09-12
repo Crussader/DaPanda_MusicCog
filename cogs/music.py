@@ -610,17 +610,32 @@ class Music(commands.Cog):
         if player is None: return
         if not player.channel_id or not player: return self.bot.lavalink.player_manager.remove(member.guild.id)
         channel = self.bot.get_channel(int(player.channel_id))
+        text_channel = self.bot.get_channel(int(player.text_channel))
         members = 0
         for m in channel.members:
             if not m.bot:
                 members += 1
         if members > 0:
-            if member == player.dj and after.channel is None or after.channel.id != player.channel_id:
-                members = []
-                for m in channel.members:
-                    if not m.bot:
-                        members.append(m.id)
-                player.dj == random.choice(members)
+            if member.id == player.dj:
+                if after.channel is None:
+                    members = []
+                    for m in channel.members:
+                        if not m.bot:
+                            members.append(m.id)
+                    player.dj = random.choice(members)
+                    new_dj = member.guild.get_member(player.dj)
+                    embed = discord.Embed(title=f'New DJ',color=discord.Color.blurple(),description=f'Now {new_dj.mention} is in charge!')
+                    await text_channel.send(embed=embed)
+                else:
+                    if after.channel.id != int(player.channel_id):
+                        members = []
+                        for m in channel.members:
+                            if not m.bot:
+                                members.append(m.id)
+                        player.dj = random.choice(members)
+                        new_dj = member.guild.get_member(player.dj)
+                        embed = discord.Embed(title=f'New DJ',color=discord.Color.blurple(),description=f'Now {new_dj.mention} is in charge!')
+                        await text_channel.send(embed=embed)
         else:
             player.queue.clear()
             await player.stop()
