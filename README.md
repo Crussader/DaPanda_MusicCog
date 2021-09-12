@@ -1,14 +1,18 @@
 # Music bot discord.py, made with lavalink
 # Getting started
 ## Requirements
-First you need to run a command to install discord.py,
+First you need to run a command to install `discord.py`,
 ```shell
 pip install -U git+https://github.com/Rapptz/discord.py
 
 ```
-Then you need to run a command to install lavalink,
+To be able to play tracks you will need `lavalink`,
 ```shell
 pip install -U git+https://github.com/Devoxin/Lavalink.py@dev
+```
+And for the menus you will need `discord-ext-menus-views`
+```shell
+pip install git+https://github.com/oliver-ni/discord-ext-menus-views
 ```
 ## Installation
 `1` Add `music.py` to your cogs folder.<br>
