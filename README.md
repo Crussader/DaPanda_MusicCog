@@ -15,9 +15,12 @@ And for the menus you will need `discord-ext-menus-views`
 pip install git+https://github.com/oliver-ni/discord-ext-menus-views
 ```
 ## Installation
-`1` Add `music.py` to your cogs folder.<br>
+`1` Add `music.py` and `music-config.json` to your cogs folder.<br>
+`1` PLEASE NOTE: you need a bot session for the commands to work.
 `2` Enable debug event by adding `enable_debug_events = True` to your client settings.<br>
-`3` Add `user_id` parameter to your bot in your main file.
+`3` Add `user_id` parameter to the `music-config.json` file.
+
+Everything else is customizable from the json file.
 
 ## Commands
 - play <query> (Loads your input and adds it to the queue; If there is no playing track, then it will start playing)
@@ -36,8 +39,11 @@ pip install git+https://github.com/oliver-ni/discord-ext-menus-views
 - volume [volume] (Sets the player's volume; If there is not input, it will return the current value)
 - remove <start> [end] (Removes all the tracks from the specified start through the specified end (if the end is not specified it will remove only one track))
 - move <position> <track> (Moves the specified song to the specified position)
+- nodes
+- change_node (owner only)
 
 # Features
+- Multi-Node support
 - Playlists support
 - Only the DJ or someone that have (`manage_messages`) permission can control the player
 - Buttons / Dropdowns
