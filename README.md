@@ -16,9 +16,9 @@ pip install git+https://github.com/oliver-ni/discord-ext-menus-views
 ```
 ## Installation
 `1` Add `music.py` and `music-config.json` to your cogs folder.<br>
-`1` PLEASE NOTE: you need a bot session for the commands to work.
+`1` PLEASE NOTE: you need a bot session for the commands to work.<br>
 `2` Enable debug event by adding `enable_debug_events = True` to your client settings.<br>
-`3` Add `user_id` parameter to the `music-config.json` file.
+`3` Set your bot's ID in the `music-config.json` file.
 
 Everything else is customizable from the json file.
 
