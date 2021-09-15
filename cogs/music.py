@@ -7,7 +7,7 @@ from discord.ext import commands, menus
 from discord.ext.menus.views import ViewMenuPages
 
 url_rx = re.compile(r'https?://(?:www\.)?.+')
-cancel_emote = "\U0000274c"
+cancel_emote = "❌"
 
 with open('cogs/music-config.json', "r+") as file:
     config = json.load(file)
@@ -105,7 +105,7 @@ def convert_bytes(size):
 
     return size
 
-#MENUS / DROPDOWNS
+#MENUS / DROPDOWNS   u200b
 class QueueMenu(menus.ListPageSource):
     """Player queue paginator class."""
     def __init__(self, data, ctx):
@@ -117,7 +117,9 @@ class QueueMenu(menus.ListPageSource):
         offset = menu.current_page * self.per_page
         text = '1 song in the queue'
         if len(self.data) > 1:  text = f'{len(self.data)} songs in the queue'
-        embed = discord.Embed(title=text,colour=color(self.ctx),description = '\n'.join(f'`{i+1}.` {v}' for i, v in enumerate(entries, start=offset)))
+        embed = discord.Embed(title=text,colour=color(self.ctx))
+        for i, v in enumerate(entries, start=offset):
+            embed.add_field(name='\u200b',value=f'`{i+1}.` {v}',inline=False)
         return embed
     def is_paginating(self):
         return True
@@ -132,7 +134,9 @@ class NodesMenu(menus.ListPageSource):
 
     async def format_page(self, menu, entries):
         offset = menu.current_page * self.per_page
-        embed = discord.Embed(title=self.currentNode,colour=color(self.ctx),description = '\n'.join(f'{v}' for i, v in enumerate(entries, start=offset)))
+        embed = discord.Embed(title=self.currentNode,colour=color(self.ctx))
+        for i, v in enumerate(entries, start=offset):
+            embed.add_field(name='\u200b',value=v, inline=False)
         return embed
     def is_paginating(self):
         return True
@@ -256,7 +260,10 @@ class CustomPlayer(lavalink.BasePlayer):
     @property
     def length(self):
         """ Returns the length of the queue. """
-        return len(self.queue)
+        if len(self.queue) != 0:
+            return len(self.queue)
+        else:
+            return 0
 
     @property
     def is_playing(self):
@@ -408,7 +415,7 @@ class CustomPlayer(lavalink.BasePlayer):
         """
         Randomizes the current order of tracks in the queue
         """
-        random.shuffle(self.queue, random)
+        random.shuffle(self.queue)
 
     async def set_pause(self, pause: bool):
         """
@@ -516,7 +523,7 @@ class Music(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
         if not hasattr(bot, 'lavalink'):  # This ensures the client isn't overwritten during cog reloads.
-            bot.lavalink = lavalink.Client(config['user_id'],CustomPlayer)
+            bot.lavalink = lavalink.Client(bot.user_id,CustomPlayer)
             for node in config['nodes']:
                 bot.lavalink.add_node(**node)
             bot.add_listener(bot.lavalink.voice_update_handler, 'on_socket_custom_receive')
@@ -828,7 +835,7 @@ class Music(commands.Cog):
         if not player.is_connected: raise NoVoiceChannel
         if not self.is_privileged(ctx): raise NotAuthorized
         #ACTUAL PART
-        player.shuffle()
+        await player.shuffle()
         embed = discord.Embed(color = (color(ctx)),description = "The current queue was shuffled.")
         return await ctx.send(embed=embed)
 
@@ -986,21 +993,9 @@ class Music(commands.Cog):
                     ms = round((now - before) * 1000)
                 uptime = str(dt.timedelta(milliseconds=node.stats.uptime))
                 uptime = uptime.split('.')
-                info.append(f"**{node.name} - Status: ✅\n\
-                            Players: `{len(node.players)}` |\
-                            Region: `{node.region}` |\
-                            Ping: `{ms}ms`\n\
-                            Node RAM: `{convert_bytes(node.stats.memory_used)} / {convert_bytes(node.stats.memory_allocated)} ({convert_bytes(node.stats.memory_free)} free)`\n\
-                            Node CPU Cores: `{node.stats.cpu_cores}` |\
-                            Node Uptime: `{uptime[0]}`\n**")
+                info.append(f"**{node.name} - Status: ✅\nPlayers: `{len(node.players)}` | Region: `{node.region}` | Ping: `{ms}ms`\nNode RAM: `{convert_bytes(node.stats.memory_used)} / {convert_bytes(node.stats.memory_allocated)} ({convert_bytes(node.stats.memory_free)} free)`\nNode CPU Cores: `{node.stats.cpu_cores}` | Node Uptime: `{uptime[0]}`**")
             else:
-                info.append(f"**{node.name} - Status: ❌\n\
-                            Players: `N/A` |\
-                            Region: `N/A` |\
-                            Ping: `N/A`\n\
-                            Node RAM: `N/A`\n\
-                            Node CPU Cores: `N/A` |\
-                            Node Uptime: `N/A`\n**")
+                info.append(f"**{node.name} - Status: ❌\nPlayers: `N/A` |Region: `N/A` | Ping: `N/A`\nNode RAM: `N/A`\nNode CPU Cores: `N/A` | Node Uptime: `N/A`**")
         paginator = ViewMenuPages(source=NodesMenu(currentNode,info, ctx), timeout = 30.0, clear_reactions_after=True)
         await paginator.start(ctx)
 
