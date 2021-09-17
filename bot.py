@@ -1,10 +1,9 @@
 import discord, os, aiohttp
 from discord.ext import commands
 
-intents = discord.Intents.default()
-bot = commands.Bot(intents=intents,
-                    command_prefix='?',
-                    enable_debug_events = True)
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix='?',
+                   enable_debug_events = True)
 
 for filename in os.listdir("./cogs"):
     if filename.endswith(".py"):
