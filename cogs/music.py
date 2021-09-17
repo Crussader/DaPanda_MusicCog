@@ -7,7 +7,7 @@ from discord.ext import commands, menus
 from discord.ext.menus.views import ViewMenuPages
 
 url_rx = re.compile(r'https?://(?:www\.)?.+')
-cancel_emote = "❌"
+cancel_emote = "<:tickNo:885222934036226068>"
 
 with open('cogs/music-config.json', "r+") as file:
     config = json.load(file)
@@ -107,7 +107,7 @@ def convert_bytes(size):
 
     return size
 
-#MENUS / DROPDOWNS   u200b
+#MENUS / DROPDOWNS
 class QueueMenu(menus.ListPageSource):
     """Player queue paginator class."""
     def __init__(self, data, ctx):
@@ -630,7 +630,7 @@ class Music(commands.Cog):
         ignored = ctx.command.name in config['ignored_commands']
         
         if not ignored: 
-            if ctx.author.voice or not ctx.author.voice.channel:
+            if not ctx.author.voice or not ctx.author.voice.channel:
                 raise NoConnection
         if not player.is_connected:
             if not should_connect:
