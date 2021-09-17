@@ -551,7 +551,7 @@ class Music(commands.Cog):
     async def cog_before_invoke(self, ctx):
         """ Command before-invoke handler. """
         guild_check = ctx.guild is not None
-        if guild_check and ctx.command.qualified_name not in config['ignored_commands']:
+        if guild_check:
             await self.ensure_voice(ctx)
         return guild_check
 
@@ -627,12 +627,14 @@ class Music(commands.Cog):
         """ This check ensures that the bot and command author are in the same voicechannel. """
         player = self.bot.lavalink.player_manager.create(ctx.guild.id, endpoint=str(ctx.guild.region))
         should_connect = ctx.command.name in ('play',)
-
-        if not ctx.author.voice or not ctx.author.voice.channel:
-            raise NoConnection
+        ignored = ctx.command.name in config['ignored_commands']
+        
+        if not ignored: 
+            if ctx.author.voice or not ctx.author.voice.channel:
+                raise NoConnection
         if not player.is_connected:
             if not should_connect:
-                raise NoVoiceChannel
+                raise NoVoiceChannel 
             if ctx.guild.afk_channel:
                 if ctx.author.voice.channel.id == ctx.guild.afk_channel.id:
                     raise AfkChannel
